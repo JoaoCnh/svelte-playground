@@ -1,5 +1,12 @@
 <script>
+	import Header from '$lib/components/header/Header.svelte';
 	import '../app.css';
 </script>
 
-<slot />
+<div class="bg-white">
+	<Header />
+
+	<main>
+		<slot />
+	</main>
+</div>
