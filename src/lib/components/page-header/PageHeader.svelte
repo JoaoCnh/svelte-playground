@@ -8,9 +8,11 @@
 
 <div class="mb-16 md:mb-28">
 	<h1
-		class="mb-2 text-4xl font-extrabold leading-none tracking-tight text-gray-900md:text-5xl lg:text-6xl uppercase break-words"
+		class="mb-2 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl uppercase break-words"
 	>
-		<mark class="px-2 text-white bg-gradient-to-r from-orange-500 to-red-500 rounded">
+		<mark
+			class="text-white bg-gradient-to-r from-orange-500 to-red-500 rounded text-transparent bg-clip-text"
+		>
 			{title}
 		</mark>
 	</h1>
