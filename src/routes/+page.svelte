@@ -1,3 +1,7 @@
+<script lang="ts">
+	import GithubIcon from '$lib/components/icons/GithubIcon.svelte';
+</script>
+
 <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
 	<div class="hidden sm:mb-8 sm:flex sm:justify-center">
 		<div
@@ -12,11 +16,21 @@
 	</div>
 	<div class="text-center">
 		<h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Svelte Playground</h1>
+
 		<p class="mt-6 text-lg leading-8 text-gray-600">
 			This is the home of all of my experiments with Svelte. Home to simple & complex components,
 			the goal is to have a place to store all my experiments in one place instead of creating a new
 			project for every single one.
 		</p>
+
+		<ul class="flex items-center justify-center my-3">
+			<li>
+				<a href="https://github.com/JoaoCnh/svelte-playground" target="_blank" class="group">
+					<GithubIcon class="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600" />
+				</a>
+			</li>
+		</ul>
+
 		<div class="mt-10 flex items-center justify-center gap-x-6">
 			<a
 				href="/playground"
