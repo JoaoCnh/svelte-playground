@@ -68,6 +68,12 @@
 		style:transform="scale({hovering ? 1.3 : 1})"
 	/>
 
+	<div class="absolute inset-0 p-2 flex items-end rounded-lg md:hidden">
+		<h5 class="text-xl font-bold tracking-tight text-white text-left uppercase">
+			{title}
+		</h5>
+	</div>
+
 	<div
 		class="absolute inset-0 flex items-center justify-center rounded-lg bg-black/40 pointer-events-none"
 		style:transform="translate3d({$coordsX}%,{$coordsY}%,1px)"
