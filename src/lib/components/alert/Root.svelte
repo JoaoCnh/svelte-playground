@@ -26,9 +26,7 @@
 	</div>
 
 	{#if $$slots.body}
-		<div class="mt-2 mb-4 text-s">
-			<slot name="body" />
-		</div>
+		<slot name="body" />
 	{/if}
 
 	<div class="flex">
