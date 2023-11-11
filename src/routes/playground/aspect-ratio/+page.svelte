@@ -1,6 +1,12 @@
 <script>
 	import AspectRatio from '$lib/components/aspect-ratio/AspectRatio.svelte';
 	import PageHeader from '$lib/components/page-header/PageHeader.svelte';
+
+	let ratios = [
+		{ text: '3/4', value: 3 / 4 },
+		{ text: '16/9', value: 16 / 9 },
+		{ text: '1', value: 1 }
+	];
 </script>
 
 <section id="Aspect Ratio" class="relative isolate px-6 pt-28 lg:px-8">
@@ -13,20 +19,21 @@
 	<ul
 		class="mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14"
 	>
-		<li class="w-full h-full">
-			<AspectRatio ratio={3 / 4}>
-				<img src="/aspect-ratio.jpg" alt="3/4 ratio" class="w-full h-full object-cover" />
-			</AspectRatio>
-		</li>
-		<li class="w-full h-full">
-			<AspectRatio ratio={16 / 9}>
-				<img src="/aspect-ratio.jpg" alt="16/9 ratio" class="w-full h-full object-cover" />
-			</AspectRatio>
-		</li>
-		<li class="w-full h-full">
-			<AspectRatio ratio={1}>
-				<img src="/aspect-ratio.jpg" alt="1/1 ratio" class="w-full h-full object-cover" />
-			</AspectRatio>
-		</li>
+		{#each ratios as ratio}
+			<li class="w-full h-full">
+				<AspectRatio ratio={ratio.value}>
+					<figure class="w-full h-full">
+						<img
+							src="/aspect-ratio.jpg"
+							alt="{ratio.text} ratio"
+							class="w-full h-full object-cover"
+						/>
+						<figcaption class="mt-2 text-sm text-center text-gray-500">
+							{ratio.text}
+						</figcaption>
+					</figure>
+				</AspectRatio>
+			</li>
+		{/each}
 	</ul>
 </section>
