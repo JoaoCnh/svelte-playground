@@ -23,9 +23,9 @@
 </script>
 
 {#if asChild}
-	<slot {...$$props} cx="flex {cssClass}" />
+	<slot {...$$restProps} cx="flex {cssClass}" />
 {:else}
-	<button {...$$props} class="flex {cssClass}">
+	<button {...$$restProps} class="flex {cssClass}" on:click>
 		<slot />
 	</button>
 {/if}
