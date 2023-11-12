@@ -3,6 +3,16 @@
 	import '../app.css';
 </script>
 
+<svelte:head>
+	<title>Svelte Playground</title>
+	<meta
+		name="description"
+		content="Home of all of JoaoCnh's experiments with Svelte. Home to simple & complex components,
+	the goal is to have a place to store all my experiments in one place instead of creating a new
+	project for every single one."
+	/>
+</svelte:head>
+
 <div class="bg-white">
 	<Header />
 
