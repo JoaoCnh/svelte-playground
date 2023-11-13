@@ -6,16 +6,19 @@
 	export let threshold: number = 0;
 
 	let scrollY: number;
-	let sources: HTMLImageElement[];
 	let section: HTMLElement;
 	let canvas: HTMLCanvasElement;
+	let imageSources: HTMLImageElement[] = [];
 
 	function loadImages() {
-		sources = images.map((src) => {
-			const img = new Image();
-			img.src = src;
-			return img;
-		});
+		return images.map(
+			(src) =>
+				new Promise<HTMLImageElement>((resolve) => {
+					const img = new Image();
+					img.onload = () => resolve(img);
+					img.src = src;
+				})
+		);
 	}
 
 	function sizeCanvas() {
@@ -27,7 +30,9 @@
 		context?.clearRect(0, 0, canvas.width, canvas.height);
 	}
 
-	function drawImage(frame: number) {
+	function drawImage(frame: number, sources: HTMLImageElement[]) {
+		if (sources.length === 0) return;
+
 		const context = canvas.getContext('2d');
 		// get image element by frame
 		const image = sources[frame];
@@ -54,9 +59,11 @@
 	}
 
 	onMount(() => {
-		loadImages();
-		sizeCanvas();
-		drawImage(0);
+		Promise.all(loadImages()).then((sources) => {
+			imageSources = sources;
+			sizeCanvas();
+			drawImage(0, sources);
+		});
 	});
 
 	$: {
@@ -70,7 +77,7 @@
 			const progress = scrollTop / contentHeight;
 			const frame = Math.max(0, Math.min(images.length - 1, Math.floor(progress * images.length)));
 
-			drawImage(frame);
+			drawImage(frame, imageSources);
 		}
 	}
 </script>

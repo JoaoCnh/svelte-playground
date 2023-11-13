@@ -5,7 +5,7 @@
 
 	let airpodsMax = Array.from({ length: 45 }, (_, i) => i).map((i) => {
 		const paddedIndex = i.toString().padStart(4, '0');
-		return `https://www.apple.com/105/media/us/airpods-max/2020/996b980b-3131-44f1-af6c-fe72f9b3bfb5/anim/turn/large_2x/large_2x_${paddedIndex}.jpg`;
+		return `https://www.apple.com/105/media/us/airpods-max/2020/996b980b-3131-44f1-af6c-fe72f9b3bfb5/anim/turn/small/small_${paddedIndex}.jpg`;
 	});
 </script>
 
