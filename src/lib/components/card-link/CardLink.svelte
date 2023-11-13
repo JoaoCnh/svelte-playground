@@ -5,6 +5,7 @@
 	export let href: string;
 	export let title: string;
 	export let image: string;
+	export let sizes: string = '';
 
 	let hovering = false;
 
@@ -61,9 +62,10 @@
 	on:mouseenter={animateIn}
 	on:mouseleave={animateOut}
 >
-	<img
+	<enhanced:img
 		src={image}
 		alt={title}
+		{sizes}
 		class="w-full h-full object-cover rounded-lg transition"
 		style:transform="scale({hovering ? 1.3 : 1})"
 	/>

@@ -8,6 +8,8 @@
 		let prefix = number < 10 ? 0 : '';
 		return `${prefix}${number}`;
 	});
+
+	import cardLinkImg from '$lib/assets/card-link.jpg?enhanced&w=400;640;1280&imagetools';
 </script>
 
 <section id="card link" class="relative isolate px-6 pt-28 lg:px-8">
@@ -18,12 +20,17 @@
 	/>
 
 	<ul
-		class="mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14"
+		class="mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14"
 	>
 		{#each data as item}
 			<li class="w-full h-full">
 				<AspectRatio ratio={1}>
-					<CardLink title={item} href="/playground/card-link" image="/card-link.jpg" />
+					<CardLink
+						title={item}
+						href="/playground/card-link"
+						image={cardLinkImg}
+						sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+					/>
 				</AspectRatio>
 			</li>
 		{/each}

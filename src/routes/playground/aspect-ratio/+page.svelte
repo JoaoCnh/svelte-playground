@@ -7,6 +7,8 @@
 		{ text: '16/9', value: 16 / 9 },
 		{ text: '1', value: 1 }
 	];
+
+	import aspectRatioImg from '$lib/assets/aspect-ratio.jpg?enhanced&w=400;640;1280&imagetools';
 </script>
 
 <section id="Aspect Ratio" class="relative isolate px-6 pt-28 lg:px-8">
@@ -23,10 +25,11 @@
 			<li class="w-full h-full">
 				<AspectRatio ratio={ratio.value}>
 					<figure class="w-full h-full">
-						<img
-							src="/aspect-ratio.jpg"
+						<enhanced:img
+							src={aspectRatioImg}
 							alt="{ratio.text} ratio"
 							class="w-full h-full object-cover"
+							sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
 						/>
 						<figcaption class="mt-2 text-sm text-center text-gray-500">
 							{ratio.text}
