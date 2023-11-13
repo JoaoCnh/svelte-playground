@@ -6,7 +6,7 @@
 	export let checked = false;
 	export let hovering = false;
 
-	let { class: className, otherProps } = $$restProps;
+	let { class: className, ...otherProps } = $$restProps;
 </script>
 
 <div
