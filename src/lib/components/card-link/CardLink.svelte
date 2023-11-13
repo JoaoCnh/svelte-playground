@@ -7,8 +7,6 @@
 	export let image: string;
 	export let sizes: string = '';
 
-	let hovering = false;
-
 	const options = {
 		duration: 300,
 		easing: cubicInOut
@@ -43,14 +41,12 @@
 		const position = getAnimationDirection(event);
 		await coordsX.set(position.x, { duration: 0 });
 		await coordsY.set(position.y, { duration: 0 });
-		hovering = true;
 		$coordsX = 0;
 		$coordsY = 0;
 	}
 
 	function animateOut(event: MouseEvent) {
 		const position = getAnimationDirection(event);
-		hovering = false;
 		$coordsX = position.x;
 		$coordsY = position.y;
 	}
@@ -66,8 +62,7 @@
 		src={image}
 		alt={title}
 		{sizes}
-		class="w-full h-full object-cover rounded-lg transition"
-		style:transform="scale({hovering ? 1.3 : 1})"
+		class="w-full h-full object-cover rounded-lg transition hover:scale-125"
 	/>
 
 	<div class="absolute inset-0 p-2 flex items-end rounded-lg md:hidden">
