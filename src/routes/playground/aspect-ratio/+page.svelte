@@ -11,7 +11,7 @@
 	import aspectRatioImg from '$lib/assets/aspect-ratio.jpg?enhanced&w=400;640;1280&imagetools';
 </script>
 
-<section id="Aspect Ratio" class="relative isolate px-6 pt-28 lg:px-8">
+<section id="aspect-ratio" class="relative isolate px-6 pt-28 lg:px-8">
 	<PageHeader
 		title="aspect ratio"
 		description="Displays content within the desired ratio."

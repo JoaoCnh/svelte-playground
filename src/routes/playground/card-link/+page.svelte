@@ -12,7 +12,7 @@
 	import cardLinkImg from '$lib/assets/card-link.jpg?enhanced&w=400;640;1280&imagetools';
 </script>
 
-<section id="card link" class="relative isolate px-6 pt-28 lg:px-8">
+<section id="card-link" class="relative isolate px-6 pt-28 lg:px-8">
 	<PageHeader
 		title="card link"
 		description="Exploring animations in Svelte with a card component."
