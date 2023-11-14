@@ -2,20 +2,40 @@
 	import { enhance } from '$app/forms';
 	import { Alert } from '$lib/components/alert';
 	import Input from '$lib/components/form/Input.svelte';
+	import Toast from '$lib/components/toast/Toast.svelte';
 	import Button from '$lib/components/button/Button.svelte';
 	import Dialog from '$lib/components/dialog/Dialog.svelte';
 	import PlusIcon from '$lib/components/icons/PlusIcon.svelte';
-	import RocketIcon from '$lib/components/icons/RocketIcon.svelte';
-	import WarningIcon from '$lib/components/icons/WarningIcon.svelte';
 	import SubmitButton from '$lib/components/form/SubmitButton.svelte';
 	import PageHeader from '$lib/components/page-header/PageHeader.svelte';
-	import UserCircleIcon from '$lib/components/icons/UserCircleIcon.svelte';
 	import type { PageData, ActionData } from './$types';
 
 	export let data: PageData;
 	export let form: ActionData;
 
 	let showCreateForm = false;
+	let toast: Toast;
+
+	$: {
+		// we could also do this declaratively on use:enhance but (inserts this is my garbage possum meme)
+		if (form?.error) {
+			toast.show({ type: 'error', text: form.error });
+		}
+
+		if (form?.id === 'login' && form?.success) {
+			toast.show({
+				type: 'success',
+				text: `${data.user?.name} arrives precisely when he means to.`
+			});
+		}
+
+		if (form?.id === 'create' && form?.success) {
+			toast.show({
+				type: 'success',
+				text: 'spell created successfully'
+			});
+		}
+	}
 </script>
 
 <section id="actions" class="relative isolate px-6 pt-28 lg:px-8">
@@ -25,33 +45,9 @@
 		githubUrl="https://github.com/JoaoCnh/svelte-playground/blob/main/src/lib/playground/actions/+page.svelte"
 	/>
 
+	<Toast bind:this={toast} />
+
 	<div class="w-full md:w-1/2 mx-auto">
-		{#if form?.id === 'login' && form?.success}
-			<Alert variant="success">
-				<UserCircleIcon slot="icon" class="flex-shrink-0 w-4 h-4 mr-2" />
-				<Alert.Title slot="title">a wizard is never late, nor is he early</Alert.Title>
-				<Alert.Body slot="body" class="capitalize">
-					{data.user?.name} arrives precisely when he means to.
-				</Alert.Body>
-			</Alert>
-		{/if}
-
-		{#if form?.id === 'create' && form?.success}
-			<Alert variant="success">
-				<RocketIcon slot="icon" class="flex-shrink-0 w-4 h-4 mr-2" />
-				<Alert.Title slot="title">success</Alert.Title>
-				<Alert.Body slot="body" class="capitalize">spell created successfully</Alert.Body>
-			</Alert>
-		{/if}
-
-		{#if form?.error}
-			<Alert variant="danger">
-				<WarningIcon slot="icon" class="flex-shrink-0 w-4 h-4 mr-2" />
-				<Alert.Title slot="title">i have no memory of this place</Alert.Title>
-				<Alert.Body slot="body" class="capitalize">{form.error}</Alert.Body>
-			</Alert>
-		{/if}
-
 		{#if data.user}
 			<Dialog bind:open={showCreateForm} title="create new spell">
 				<form
