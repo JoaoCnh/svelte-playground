@@ -23,9 +23,9 @@
 </script>
 
 {#if asChild}
-	<slot {...$$restProps} cx="flex {cssClass}" />
+	<slot {...$$restProps} cx="inline-flex justify-center {cssClass}" />
 {:else}
-	<button {...$$restProps} class="flex {cssClass}" on:click>
+	<button {...$$restProps} class="inline-flex justify-center {cssClass}" on:click>
 		<slot />
 	</button>
 {/if}
