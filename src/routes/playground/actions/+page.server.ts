@@ -1,6 +1,6 @@
 import { fail, redirect } from '@sveltejs/kit';
 import * as db from '$lib/server/fake-db';
-import type { Actions, PageServerLoad } from '../$types';
+import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ cookies }) => {
 	const id = cookies.get('userid') || '';

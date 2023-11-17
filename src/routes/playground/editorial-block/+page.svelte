@@ -1,9 +1,14 @@
 <script lang="ts">
+	import AwaitedBlock from '$lib/components/editorial-block/AwaitedBlock.svelte';
 	import PageHeader from '$lib/components/page-header/PageHeader.svelte';
 	import EditorialBlock from '$lib/components/editorial-block/EditorialBlock.svelte';
+	import { componentRegistry } from '$lib/components/editorial-block/component-registry';
 	import type { Data } from '$lib/components/editorial-block/types';
+	import type { PageData } from './$types';
 
-	const data: Data = {
+	export let data: PageData;
+
+	const staticData: Data = {
 		components: [
 			{
 				type: 'image',
@@ -25,5 +30,17 @@
 		githubUrl="https://github.com/JoaoCnh/svelte-playground/blob/main/src/lib/components/editorial-block/EditorialBlock.svelte"
 	/>
 
-	<EditorialBlock {data} />
+	{#each data.components as componentPromise}
+		{#await componentPromise}
+			Streaming component data...
+		{:then componentData}
+			{@const comp = componentRegistry[componentData.type]}
+
+			<AwaitedBlock register={comp} data={componentData} />
+		{:catch error}
+			{error.message}
+		{/await}
+	{/each}
+
+	<EditorialBlock data={staticData} />
 </section>

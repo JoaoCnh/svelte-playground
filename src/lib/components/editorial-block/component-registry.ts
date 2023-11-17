@@ -3,11 +3,13 @@ import type { Component } from './types';
 
 import ImageLoader from './page-components/image-component/Loader.svelte';
 
-type Registry = {
-	[Type in Component['type']]: {
-		loader?: ComponentType;
-		getAsync: () => Promise<{ default: ComponentType }>;
-	};
+export type ComponentRegister = {
+	loader?: ComponentType;
+	getAsync: () => Promise<{ default: ComponentType }>;
+};
+
+export type Registry = {
+	[Type in Component['type']]: ComponentRegister;
 };
 
 /**

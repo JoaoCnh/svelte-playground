@@ -1,4 +1,5 @@
 <script lang="ts">
+	import AwaitedBlock from './AwaitedBlock.svelte';
 	import { componentRegistry } from './component-registry';
 	import type { Data } from './types';
 
@@ -8,11 +9,5 @@
 {#each data.components as component}
 	{@const comp = componentRegistry[component.type]}
 
-	{#await comp.getAsync()}
-		{#if comp.loader}
-			<svelte:component this={comp.loader} {...component} />
-		{/if}
-	{:then module}
-		<svelte:component this={module.default} {...component} />
-	{/await}
+	<AwaitedBlock register={comp} data={component} />
 {/each}
