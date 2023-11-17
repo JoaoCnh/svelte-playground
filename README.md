@@ -1,38 +1,21 @@
-# create-svelte
+# svelte-playground
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Welcome to Svelte-Playground! 🚀 This repository is a space for showcasing my experiments and learning journey with [Svelte](https://svelte.dev/).
 
-## Creating a project
+## Table of Contents
 
-If you're seeing this, you've probably already done this step. Congrats!
+- [About](#about)
+- [Demo](#demo)
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## About
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+Svelte-Playground is a collection of Svelte projects, each representing a different aspect of my exploration into the wonderful world of Svelte.
+Whether you're new to Svelte or looking for inspiration, this repository aims to provide both educational content and practical examples.
 
-## Developing
+## Demo
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Explore the live demos deployed on Vercel:
 
-```bash
-npm run dev
+[**Live Demo**](https://svelte-playground-iota.vercel.app)
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-brightgreen?style=flat&logo=vercel)](https://svelte-playground-iota.vercel.app)
