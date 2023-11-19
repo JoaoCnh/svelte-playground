@@ -14,7 +14,9 @@
 	const debouncedSubmit = debounce(500, async () => {
 		const trimmedQuery = debouncedValue.trim();
 
-		if (trimmedQuery.length > 3) {
+		if (trimmedQuery.length === 0) {
+			dispatch('query', '');
+		} else if (trimmedQuery.length > 3) {
 			lastAbortController?.abort();
 			lastAbortController = new AbortController();
 			const signal = lastAbortController.signal;

@@ -45,7 +45,9 @@
 				<QueryForm on:query={(e) => (query = e.detail)} on:result={(e) => (results = e.detail)} />
 
 				{#if !!query}
-					<Results {results} />
+					{#key query}
+						<Results {results} />
+					{/key}
 				{/if}
 			</div>
 			<button
