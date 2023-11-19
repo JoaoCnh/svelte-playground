@@ -1,8 +1,4 @@
 <script lang="ts">
-	import LitIcon from '$lib/components/icons/LitIcon.svelte';
-	import OpenIcon from '$lib/components/icons/OpenIcon.svelte';
-	import VercelIcon from '$lib/components/icons/VercelIcon.svelte';
-	import SvelteIcon from '$lib/components/icons/SvelteIcon.svelte';
 	import ResultOption from './ResultOption.svelte';
 	import type { SearchResult } from '$lib/services/search/types';
 
@@ -10,19 +6,6 @@
 
 	let selectedGroupIdx = 0;
 	let selectedItemIdx = 0;
-
-	function renderIcon(icon: string) {
-		switch (icon) {
-			case 'vercel':
-				return VercelIcon;
-			case 'svelte':
-				return SvelteIcon;
-			case 'lit':
-				return LitIcon;
-			default:
-				return OpenIcon;
-		}
-	}
 
 	$: renderedGroups = results.groups.filter((group) => group.items.length > 0);
 
@@ -77,10 +60,9 @@
 					</div>
 					<ul role="group">
 						{#each group.items as item, itemIdx}
-							{@const icon = renderIcon(item.icon || '')}
 							{@const selected = selectedGroupIdx === groupIdx && selectedItemIdx === itemIdx}
 
-							<ResultOption {selected} url={item.url} label={item.label} {icon} />
+							<ResultOption {selected} url={item.url} label={item.label} icon={item.icon} />
 						{/each}
 					</ul>
 				</div>
