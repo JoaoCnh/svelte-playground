@@ -2,6 +2,7 @@
 	import LitIcon from '$lib/components/icons/LitIcon.svelte';
 	import OpenIcon from '$lib/components/icons/OpenIcon.svelte';
 	import AppleIcon from '$lib/components/icons/AppleIcon.svelte';
+	import SolidIcon from '$lib/components/icons/SolidIcon.svelte';
 	import VercelIcon from '$lib/components/icons/VercelIcon.svelte';
 	import SvelteIcon from '$lib/components/icons/SvelteIcon.svelte';
 
@@ -22,6 +23,8 @@
 				return SvelteIcon;
 			case 'lit':
 				return LitIcon;
+			case 'solid':
+				return SolidIcon;
 			default:
 				return OpenIcon;
 		}

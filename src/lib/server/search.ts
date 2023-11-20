@@ -22,7 +22,8 @@ const experiments = [
 
 const playgrounds = [
 	{ icon: 'svelte', label: 'svelte playground', url: 'https://svelte-playground-iota.vercel.app/' },
-	{ icon: 'lit', label: 'lit playground', url: 'https://lit-playground-chi.vercel.app/' }
+	{ icon: 'lit', label: 'lit playground', url: 'https://lit-playground-chi.vercel.app/' },
+	{ icon: 'solid', label: 'solid playground', url: 'https://solid-playground.vercel.app/' }
 ];
 
 const fuzzyOptions = { keys: [{ name: 'label', weight: 2 }, 'url'] };
