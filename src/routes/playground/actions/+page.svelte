@@ -6,6 +6,7 @@
 	import Button from '$lib/components/button/Button.svelte';
 	import Dialog from '$lib/components/dialog/Dialog.svelte';
 	import PlusIcon from '$lib/components/icons/PlusIcon.svelte';
+	import EyeOfSauron from '$lib/components/icons/EyeOfSauron.svelte';
 	import SubmitButton from '$lib/components/form/SubmitButton.svelte';
 	import PageHeader from '$lib/components/page-header/PageHeader.svelte';
 	import type { PageData, ActionData } from './$types';
@@ -139,7 +140,9 @@
 						required
 						autocomplete="off"
 						error={form?.id === 'login' && !!form?.error}
-					/>
+					>
+						<EyeOfSauron slot="end" class="w-6 h-6" />
+					</Input>
 
 					<SubmitButton class="w-full">login to your account</SubmitButton>
 				</form>

@@ -2,29 +2,37 @@
 	import type { HTMLInputAttributes } from 'svelte/elements';
 
 	interface $$Props extends HTMLInputAttributes {
+		id?: string;
 		label: string;
 		value: any;
 		error?: boolean;
 	}
 
+	export let id: string = '';
 	export let label: string;
 	export let value: any;
 	export let error = false;
-
-	const { id, ...restProps } = $$props;
 </script>
 
 <div class:error>
 	<label for={id} class="block mb-2 text-sm font-medium text-gray-900 capitalize">
 		{label}
 	</label>
-	<input
-		type="email"
-		{id}
-		bind:value
-		class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
-		{...restProps}
-	/>
+
+	<div class="relative">
+		<input
+			{id}
+			bind:value
+			class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
+			{...$$restProps}
+		/>
+
+		{#if $$slots.end}
+			<div class="absolute inset-y-0 end-0 flex items-center pe-3 pointer-events-none">
+				<slot name="end" />
+			</div>
+		{/if}
+	</div>
 </div>
 
 <style lang="postcss">
