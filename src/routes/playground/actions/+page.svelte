@@ -48,7 +48,7 @@
 
 	<Toast bind:this={toast} />
 
-	<div class="w-full md:w-1/2 mx-auto">
+	<div class="w-full md:max-w-md mx-auto">
 		{#if data.user}
 			<Dialog bind:open={showCreateForm} title="create new spell">
 				<form
