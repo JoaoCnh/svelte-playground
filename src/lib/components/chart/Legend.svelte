@@ -1,9 +1,7 @@
 <script lang="ts">
-	import { getContext } from 'svelte';
-	import type { Writable } from 'svelte/store';
-	import type { Legend } from './legendStore';
+	import { getLegendStore } from './store';
 
-	const legend = getContext<Writable<Record<string, Legend>>>('legend');
+	const legend = getLegendStore();
 
 	$: values = Object.values($legend);
 </script>

@@ -1,31 +1,28 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { scaleLinear } from 'd3-scale';
+	import { getDimensionsStore, getXScaleStore, getXTicksStore } from './store';
 	import type { Writable } from 'svelte/store';
-	import type { ChartDimensions, ChartMargin } from './types';
 
 	export let dataKey: string;
 
 	type T = $$Generic<Record<string, any>>;
 
 	const data = getContext<Writable<T[]>>('data');
-	const margin = getContext<ChartMargin>('margin');
-	const dimensions = getContext<Writable<ChartDimensions>>('dimensions');
+	const xTicks = getXTicksStore();
+	const xScale = getXScaleStore();
+	const dimensions = getDimensionsStore();
 
-	$: xTicks = $data.map((point) => point[dataKey]);
-	$: xScale = scaleLinear()
-		.domain([0, xTicks.length])
-		.range([margin.left, $dimensions.width - margin.right]);
-	$: innerWidth = $dimensions.width - (margin.left + margin.right);
-	$: barWidth = innerWidth / xTicks.length;
+	$: xTicks.set(new Set($data.map((point) => point[dataKey])));
+	$: innerWidth = $dimensions.width - ($dimensions.marginLeft + $dimensions.marginRight);
+	$: barWidth = innerWidth / $xTicks.size;
 </script>
 
 <g>
-	{#each xTicks as tick, i}
+	{#each $xTicks.values() as tick, i}
 		<g
 			class="text-xs"
 			style:text-anchor="middle"
-			transform="translate({xScale(i)},{$dimensions.height})"
+			transform="translate({$xScale(i)},{$dimensions.height})"
 		>
 			<text x={barWidth / 2} y="-4">{tick}</text>
 		</g>

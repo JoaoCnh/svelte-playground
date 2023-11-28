@@ -1,13 +1,8 @@
-export function generateYAxisTicks<T extends Record<string, any>>(
-	data: T[],
-	dataKey: string,
-	ticks: number = 5
-): number[] {
-	const birthrates = data.map((point) => point[dataKey]);
+export function generateYAxisTicks(data: number[], ticks: number = 5): number[] {
+	if (data.length === 0) return [];
 
-	const maxBirthrate = Math.max(...birthrates);
-
-	const tickInterval = Math.ceil(maxBirthrate / 4);
+	const maxPoint = Math.max(...data);
+	const tickInterval = Math.ceil(maxPoint / (ticks - 1));
 
 	return Array.from({ length: ticks }, (_, index) => index * tickInterval);
 }

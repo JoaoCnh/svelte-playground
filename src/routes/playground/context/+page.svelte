@@ -4,17 +4,19 @@
 	import PageHeader from '$lib/components/page-header/PageHeader.svelte';
 
 	let data = [
-		{ year: 1990, birthrate: 16.7 },
-		{ year: 1995, birthrate: 14.6 },
-		{ year: 2000, birthrate: 14.4 },
-		{ year: 2005, birthrate: 14 },
-		{ year: 2010, birthrate: 13 },
-		{ year: 2015, birthrate: 12.4 }
+		{ year: 1990, birthrate: 16.7, otherrate: 5 },
+		{ year: 1995, birthrate: 14.6, otherrate: 10.4 },
+		{ year: 2000, birthrate: 14.4, otherrate: 8.6 },
+		{ year: 2005, birthrate: 14, otherrate: 7 },
+		{ year: 2010, birthrate: 13, otherrate: 20 },
+		{ year: 2015, birthrate: 12.4, otherrate: 25 }
 	];
 
 	let showXAxis = true;
 	let showYAxis = true;
 	let showLegend = true;
+	let showBars = true;
+	let showLine = true;
 </script>
 
 <section id="context" class="relative isolate px-6 pt-28 lg:px-8">
@@ -28,6 +30,8 @@
 		<Switch label="Toggle x-axis" bind:checked={showXAxis} />
 		<Switch label="Toggle y-axis" bind:checked={showYAxis} />
 		<Switch label="Toggle legend" bind:checked={showLegend} />
+		<Switch label="Toggle bars" bind:checked={showBars} />
+		<Switch label="Toggle line" bind:checked={showLine} />
 	</div>
 
 	<Chart bind:data class="w-full md:w-1/2 h-[200px] md:mr-auto">
@@ -43,10 +47,16 @@
 			{/if}
 
 			{#if showYAxis}
-				<Chart.YAxis dataKey="birthrate" />
+				<Chart.YAxis />
 			{/if}
 
-			<Chart.Bar name="Birth Rate" dataKey="birthrate" fill="#f97316" />
+			{#if showBars}
+				<Chart.Bar name="Birth Rate" dataKey="birthrate" fill="#f97316" />
+			{/if}
+
+			{#if showLine}
+				<Chart.Line name="Other" dataKey="otherrate" />
+			{/if}
 		</svelte:fragment>
 	</Chart>
 </section>
