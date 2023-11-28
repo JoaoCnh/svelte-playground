@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { generateYAxisTicks } from './generateYAxisTicks';
 	import { getContext } from 'svelte';
-	import { getDimensionsStore, getXScaleStore, getYScaleStore, getYTicksStore } from './store';
+	import { getDimensionsStore, getXScaleStore, getYScaleStore } from './store';
+	import { updateYAxis } from './updateYAxis';
 	import { updateLegend } from './updateLegend';
 	import type { Writable } from 'svelte/store';
 
@@ -13,15 +13,15 @@
 
 	const data = getContext<Writable<T[]>>('data');
 	const xScale = getXScaleStore();
-	const yTicks = getYTicksStore();
 	const yScale = getYScaleStore();
 	const dimensions = getDimensionsStore();
 
 	const { setLegends } = updateLegend(dataKey);
+	const { setYTicks } = updateYAxis(name);
 
-	$: setLegends({ title: name, color });
 	$: dataPoints = $data.map((point) => point[dataKey]);
-	$: yTicks.update((set) => new Set([...Array.from(set.values()), ...dataPoints]));
+	$: setLegends({ title: name, color });
+	$: setYTicks(dataPoints);
 	$: innerWidth = $dimensions.width - ($dimensions.marginLeft + $dimensions.marginRight);
 	$: barWidth = innerWidth / dataPoints.length;
 	$: points = dataPoints

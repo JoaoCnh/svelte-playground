@@ -38,13 +38,15 @@ export const dimensionsStore = writable<DimensionsStore>({
 });
 export const getDimensionsStore = () => getContext<typeof dimensionsStore>(DIMENSIONS_STORE);
 
-export const yTicksStore = writable<Set<number>>(new Set());
+type YTicks = Record<string, number[]>;
+
+export const yTicksStore = writable<YTicks>({});
 export const getYTicksStore = () => getContext<typeof yTicksStore>(Y_TICKS_STORE);
 export const xTicksStore = writable<Set<number>>(new Set());
 export const getXTicksStore = () => getContext<typeof xTicksStore>(X_TICKS_STORE);
 
 export const yAxisStore = derived(yTicksStore, ($yTicks) => {
-	return generateYAxisTicks(Array.from($yTicks.values()));
+	return generateYAxisTicks(Object.values($yTicks).flat());
 });
 export const getYAxisStore = () => getContext<typeof yAxisStore>(Y_AXIS_STORE);
 
